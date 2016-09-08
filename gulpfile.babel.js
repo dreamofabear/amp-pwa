@@ -27,7 +27,7 @@ gulp.task('clean', () => {
 gulp.task('bundle-app', () => {
   const b = browserify({
     debug: (process.env.NODE_ENV === 'development'),
-    entries: path.join(SRC_DIR, 'scripts', 'bootstrap.js'),
+    entries: path.join(SRC_DIR, 'entry.js'),
     extensions: ['.js'],
     transform: [babelify]
   });
