@@ -2,13 +2,26 @@ import path from 'path';
 import React from 'react';
 
 export default class AMPDocument extends React.Component {
+  constructor(props) {
+    super(props);
+
+    /** @private */
+    this.container_ = null;
+
+    /** @private */
+    this.xhr_ = null;
+  }
+
   componentDidMount() {
     this.installScript_('https://cdn.ampproject.org/shadow-v0.js');
     this.fetchAndAttachAMPDoc_(this.props);
   }
 
   componentWillUnmount() {
-    // TODO: Stop in-progress fetch.
+    if (this.xhr_) {
+      this.xhr_.abort();
+      this.xhr_ = null;
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +56,7 @@ export default class AMPDocument extends React.Component {
    */
   fetchDocument_(url) {
     return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
+      const xhr = (this.xhr_ = new XMLHttpRequest());
       xhr.open('GET', url, true);
       xhr.responseType = 'document';
       xhr.setRequestHeader('Accept', 'text/html');
