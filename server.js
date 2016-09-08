@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.static('dist'));
 // app.use('/js', express.static(path.join(BUILD_DIR, 'js')));
 
-app.get('*', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(BUILD_DIR, 'index.html'))
 })
 
