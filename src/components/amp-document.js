@@ -1,9 +1,13 @@
-import path from 'path';
 import React from 'react';
 
 export default class AMPDocument extends React.Component {
   constructor(props) {
     super(props);
+
+    /** @private */
+    this.ampReadyPromise_ = new Promise(resolve => {
+      (window.AMP = window.AMP || []).push(resolve);
+    });
 
     /** @private */
     this.container_ = null;
@@ -40,10 +44,9 @@ export default class AMPDocument extends React.Component {
    */
   fetchAndAttachAMPDoc_(props) {
     const url = props.url || window.location.href;
+    // TODO: Check if `url` is an AMP url OR if document is just the shell.
     this.fetchDocument_(url).then(doc => {
-      return new Promise((resolve, reject) => {
-        (window.AMP = window.AMP || []).push(resolve);
-      }).then(amp => {
+      return this.ampReadyPromise_.then(amp => {
         amp.attachShadowDoc(this.container_, doc, url);
       });
     });
@@ -77,12 +80,8 @@ export default class AMPDocument extends React.Component {
           }
         }
       };
-      xhr.onerror = () => {
-        reject(new Error('Network failure'));
-      };
-      xhr.onabort = () => {
-        reject(new Error('Request aborted'));
-      };
+      xhr.onerror = () => { reject(new Error('Network failure')); };
+      xhr.onabort = () => { reject(new Error('Request aborted')); };
       xhr.send();
     });
   }
