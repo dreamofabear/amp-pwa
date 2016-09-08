@@ -36,7 +36,7 @@ export default class Shell extends React.Component {
           </article>
         </section>
 
-        <div id="doc-container" ref={(ref) => this.container_ = ref}>
+        <div id="doc-container">
           {this.props.children}
         </div>
       </div>
