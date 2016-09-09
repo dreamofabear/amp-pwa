@@ -64,6 +64,27 @@
       background: cyan;
     }
   </style>
+
+  <!-- Add to home screen for Chrome on Android. -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Add to home screen for Safari on iOS. -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="AMP in PWA">
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+
+  <!-- Tile icon for Windows. -->
+  <meta name="msapplication-TileImage" content="/favicons/favicon.png">
+  <meta name="msapplication-TileColor" content="#2F3BA2">
 </head>
 <body>
   <header>AMP in PWA</header>
@@ -72,7 +93,7 @@
   <script src="/js/app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
+      navigator.serviceWorker.register('/service-worker.js');
     }
   </script>
 </body>

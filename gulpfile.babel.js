@@ -78,10 +78,10 @@ gulp.task('lint', () => {
 });
 
 gulp.task('service-worker', cb => {
-  swPrecache.write(path.join(BUILD_DIR, 'sw.js'), {
+  swPrecache.write(path.join(BUILD_DIR, 'service-worker.js'), {
     staticFileGlobs: [
       BUILD_DIR + '/**/*.{js,html,css,png,jpg,jpeg,gif,svg}',
-      //BUILD_DIR + '/manifest.json'
+      BUILD_DIR + '/manifest.json'
     ],
     stripPrefix: BUILD_DIR,
   }, cb);

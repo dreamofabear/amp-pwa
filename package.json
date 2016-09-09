@@ -1,7 +1,7 @@
 {
   "name": "amp-pwa",
   "version": "0.1.0",
-  "description": "A sample 'App Shell' style PWA that displays AMP docs.",
+  "description": "A simple PWA that displays AMP documents.",
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
