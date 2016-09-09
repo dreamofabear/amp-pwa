@@ -7,7 +7,12 @@ import Shell from './components/shell';
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Shell}>
-      <Route path="*" component={AMPDocument} />
+      <Route path="amp/**" component={
+        props => <AMPDocument src={props.params.splat} />
+      } />
+      <Route path="*" component={
+        () => <AMPDocument src={window.location.href} />
+      } />
     </Route>
   </Router>
 ), document.getElementById('root'));
