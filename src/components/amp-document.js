@@ -18,7 +18,7 @@ export default class AMPDocument extends React.Component {
 
   componentDidMount() {
     this.installScript_('https://cdn.ampproject.org/shadow-v0.js');
-    this.fetchAndAttachAMPDoc_(this.props);
+    this.fetchAndAttachAMPDoc_(this.props.src);
   }
 
   componentWillUnmount() {
@@ -29,7 +29,7 @@ export default class AMPDocument extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchAndAttachAMPDoc_(nextProps);
+    this.fetchAndAttachAMPDoc_(nextProps.src);
   }
 
   render() {
@@ -40,10 +40,9 @@ export default class AMPDocument extends React.Component {
 
   /**
    * @private
-   * @param {Object} props
+   * @param {string} url
    */
-  fetchAndAttachAMPDoc_(props) {
-    const url = props.url || window.location.href;
+  fetchAndAttachAMPDoc_(url) {
     // TODO: Check if `url` is an AMP url OR if document is just the shell.
     this.fetchDocument_(url).then(doc => {
       return this.ampReadyPromise_.then(amp => {
@@ -97,4 +96,4 @@ export default class AMPDocument extends React.Component {
     doc.head.appendChild(script);
   }
 }
-AMPDocument.propTypes = { url: React.PropTypes.string }
+AMPDocument.propTypes = { src: React.PropTypes.string.isRequired }
