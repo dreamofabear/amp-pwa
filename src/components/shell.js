@@ -1,11 +1,27 @@
 import { Link } from 'react-router';
 import React from 'react';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import './shell.css';
 
 export default class Shell extends React.Component {
   render() {
     return (
       <div>
+        <Navbar inverse fixedTop>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#">AMP in PWA</a>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav>
+              <NavItem eventKey={1} href="#">Section A</NavItem>
+              <NavItem eventKey={2} href="#">Section B</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
         <section id="stream" className="stream">
           <article className="card">
             <Link to="/content/article.amp.max.html">

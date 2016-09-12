@@ -8,7 +8,9 @@
     "react-scripts": "0.4.1"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "react": "^15.3.1",
+    "react-bootstrap": "^0.30.3",
     "react-dom": "^15.3.1",
     "react-router": "^2.8.0"
   },
