@@ -3,7 +3,41 @@ import React from 'react';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import './shell.css';
 
+// TODO(willchou): Move to separate file.
+class Article extends React.Component {
+  render() {
+    return (
+      <div className='card'>
+        <Link to={'/amp/' + this.props.src}>
+          <h4>{this.props.title}</h4>
+          <div className='detail'>{this.props.subtitle}</div>
+        </Link>
+      </div>
+    );
+  }
+}
+
 export default class Shell extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {'data': []};
+  }
+
+  componentDidMount() {
+    // TODO(willchou): Should this be XHR instead?
+    fetch('http://localhost:3001/amp.list').then(response => {
+      if (response.status !== 200) {
+        console.log('AMP document list fetch failed with code: ' + response.status);
+        return;
+      }
+
+      response.json().then(data => {
+        this.setState({'data': data});
+      });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -22,26 +56,9 @@ export default class Shell extends React.Component {
           </Navbar.Collapse>
         </Navbar>
 
-        <section id="stream" className="stream">
-          <article className="card">
-            <Link to="/content/article.amp.max.html">
-              <h4>Document with relative URL</h4>
-              <div className="detail">Bookmarks to this link will NOT render the shell.</div>
-            </Link>
-          </article>
-          <article className="card">
-            <Link to="amp/http://localhost:8080/content/youtube.amp.max.html">
-              <h4>Document with absolute URL</h4>
-              <div className="detail">Bookmarks to this link will render the shell.</div>
-            </Link>
-          </article>
-          <article className="card">
-            <Link to="amp/https://www.washingtonpost.com/amphtml/opinions/donald-trumps-raging-egomania/2016/09/08/252a4990-75f6-11e6-be4f-3f42f2e5a49e_story.html?utm_term=.44788ba3a413">
-              <h4>Document with absolute URL on different domain</h4>
-              <div className="detail">Note: Will only work if Chrome is run with --disable-web-security (use for DEV ONLY!)</div>
-            </Link>
-          </article>
-        </section>
+        <div className="stream">
+          {this.state.data.map(doc => <Article title={doc.title} subtitle={doc.subtitle} src={doc.url} key={doc.url} />)}
+        </div>
 
         <div id="doc-container">
           {this.props.children}
