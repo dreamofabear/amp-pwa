@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import React from 'react';
+import './shell.css';
 
 export default class Shell extends React.Component {
   render() {

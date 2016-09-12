@@ -1,4 +1,5 @@
 import React from 'react';
+import './amp-document.css';
 
 export default class AMPDocument extends React.Component {
   constructor(props) {
@@ -71,7 +72,7 @@ export default class AMPDocument extends React.Component {
           reject(new Error(`Unknown HTTP status ${xhr.status}`));
           return;
         }
-        if (xhr.readyState == /* COMPLETE */ 4) {
+        if (xhr.readyState === /* COMPLETE */ 4) {
           if (xhr.responseXML) {
             resolve(xhr.responseXML);
           } else {
