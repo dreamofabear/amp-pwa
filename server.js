@@ -1,52 +1,57 @@
+// TODO(willchou): Document this file!
+
 var express = require('express');
 var path = require('path');
+var pjson = require('./package.json');
 
-var PORT = 4000;
+// This port number must match that of `proxy` in `package.json`, which is used
+// to redirect requests from the development server to the APIs below.
+// @see https://github.com/facebookincubator/create-react-app/blob/master/template/README.md#proxying-api-requests-in-development
+var port = pjson.proxy ? parseInt(pjson.proxy.split(':')[2]) : 4000;
+
 var app = express();
 
-console.log(process.env.NODE_ENV);
-
+// Returns a list of AMP document metadata to display on the app shell.
 app.get('/documents', function(req, res) {
   var docs = [
     {
       "title": "AMP by example",
       "subtitle": "The home page of AMP by example.",
-      "url": "https://ampbyexample.com/"
+      "url": "/content/ampbyexample.amp.html"
     },
     {
       "title": "Hello world",
       "subtitle": "A simple AMP document.",
-      "url": "https://ampbyexample.com/introduction/hello_world/"
+      "url": "/content/hello_world.amp.html"
     },
     {
       "title": "How to publish AMPs",
       "subtitle": "A tutorial on how to publish AMP documents.",
-      "url": "https://ampbyexample.com/introduction/how_to_publish_amps/"
-    },
-    {
-      "title": "Local content",
-      "subtitle": "Sample AMP article.",
-      "url": "/content/article.amp.max.html"
+      "url": "/content/how_to_publish_amps.amp.html"
     }
   ];
   res.header('Content-Type', 'application/json');
   res.json(docs);
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.use('/static', express.static('build/static'));
-  app.use('/content', express.static('build/content'));
+// Returns the HTML content of a single AMP document.
+app.get('/content/:document', function(req, res) {
+  // TODO(willchou): Add 404 page for bogus :document params.
+  res.sendFile(path.join(__dirname, 'content', req.params.document));
+});
 
-  app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-} else {
-  app.get('/content/:document', function(req, res) {
-    // TODO(willchou): Add 404 page for bogus :document params.
-    res.sendFile(path.join(__dirname, 'content', req.params.document));
-  });
+// When testing the production build (via `npm run build`), simply serve
+// the compiled html and js in the `build` dir.
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('build'));
 }
 
-app.listen(PORT, function() {
-  console.log('Express API server running on localhost:4000...');
+app.listen(port, function() {
+  if (process.env.NODE_ENV === 'production') {
+    console.log('The production build app is running at:');
+  } else {
+    console.log('The API server is running at:');
+  }
+  console.log('  ' + 'http://localhost:' + port + '/');
+  console.log();
 })

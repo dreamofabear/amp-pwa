@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "nf start -p 3000",
-    "build": "react-scripts build && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)' && node server.js",
+    "build": "react-scripts build && cp manifest.json build/ && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)' && NODE_ENV=production node server.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
