@@ -7,7 +7,7 @@
 
   <!-- Add to home screen for Chrome on Android. -->
   <!-- TODO(willchou): Webpack doesn't build this URL correctly. -->
-  <link rel="manifest" href="./src/manifest.json">
+  <link rel="manifest" href="./manifest.json">
 
   <!-- Add to home screen for Safari on iOS. -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,13 +41,10 @@
     To create a production bundle, use `npm run build`.
   -->
 
-  <!--
-  TODO(willchou): Re-enable this.
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js');
     }
   </script>
-  -->
 </body>
 </html>

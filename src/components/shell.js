@@ -8,7 +8,7 @@ class Article extends React.Component {
   render() {
     return (
       <div className='card'>
-        <Link to={'/amp/' + this.props.src}>
+        <Link to={this.props.src}>
           <h4>{this.props.title}</h4>
           <div className='detail'>{this.props.subtitle}</div>
         </Link>
@@ -26,7 +26,7 @@ export default class Shell extends React.Component {
 
   componentDidMount() {
     // TODO(willchou): Should this be XHR instead?
-    fetch('http://localhost:3001/amp.list').then(response => {
+    fetch('/documents').then(response => {
       if (response.status !== 200) {
         console.log('AMP document list fetch failed with code: ' + response.status);
         return;

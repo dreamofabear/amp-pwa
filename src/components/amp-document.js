@@ -62,7 +62,10 @@ export default class AMPDocument extends React.Component {
       const xhr = (this.xhr_ = new XMLHttpRequest());
       xhr.open('GET', url, true);
       xhr.responseType = 'document';
-      xhr.setRequestHeader('Accept', 'text/html');
+      // This is set to text/* instead of text/html because `create-react-app`
+      // only forwards requests to the proxy for requests whose 'Accept' header
+      // is NOT text/html.
+      xhr.setRequestHeader('Accept', 'text/*');
       xhr.onreadystatechange = () => {
         if (xhr.readyState < /* STATUS_RECEIVED */ 2) {
           return;

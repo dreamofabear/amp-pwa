@@ -1,15 +1,12 @@
 var express = require('express');
+var path = require('path');
+
+var PORT = 4000;
 var app = express();
 
-const PORT = process.env.PORT || 3001;
+console.log(process.env.NODE_ENV);
 
-app.use('/', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-app.get('/amp.list', (req, res) => {
+app.get('/documents', function(req, res) {
   var docs = [
     {
       "title": "AMP by example",
@@ -25,12 +22,31 @@ app.get('/amp.list', (req, res) => {
       "title": "How to publish AMPs",
       "subtitle": "A tutorial on how to publish AMP documents.",
       "url": "https://ampbyexample.com/introduction/how_to_publish_amps/"
+    },
+    {
+      "title": "Local content",
+      "subtitle": "Sample AMP article.",
+      "url": "/content/article.amp.max.html"
     }
   ];
   res.header('Content-Type', 'application/json');
   res.json(docs);
 });
 
-app.listen(PORT, () => {
-  console.log('Express server running on localhost: ' + PORT);
+if (process.env.NODE_ENV === 'production') {
+  app.use('/static', express.static('build/static'));
+  app.use('/content', express.static('build/content'));
+
+  app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+} else {
+  app.get('/content/:document', function(req, res) {
+    // TODO(willchou): Add 404 page for bogus :document params.
+    res.sendFile(path.join(__dirname, 'content', req.params.document));
+  });
+}
+
+app.listen(PORT, function() {
+  console.log('Express API server running on localhost:4000...');
 })
