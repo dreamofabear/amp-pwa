@@ -1,20 +1,58 @@
+// TODO(willchou): Document this file!
+
 var express = require('express');
-var app = express();
 var path = require('path');
+var pjson = require('./package.json');
 
-const BUILD_DIR = path.join(__dirname, 'dist');
-const PORT = process.env.PORT || 8080;
+// This port number must match that of `proxy` in `package.json`, which is used
+// to redirect requests from the development server to the APIs below.
+// @see https://github.com/facebookincubator/create-react-app/blob/master/template/README.md#proxying-api-requests-in-development
+var port = pjson.proxy ? parseInt(pjson.proxy.split(':')[2]) : 4000;
 
-app.use(express.static('dist'));
-// app.use('/js', express.static(path.join(BUILD_DIR, 'js')));
+var app = express();
 
-var renderShell = (req, res) => {
-  res.sendFile(path.join(BUILD_DIR, 'index.html'))
-};
-
-app.get('/', renderShell);
-app.get('/amp/*', renderShell);
-
-app.listen(PORT, () => {
-  console.log('Express server running on localhost:' + PORT);
+// Returns a list of AMP document metadata to display on the app shell.
+app.get('/documents', function(req, res) {
+  var docs = [
+    {
+      "title": "AMP by example",
+      "subtitle": "The home page of AMP by example.",
+      "url": "/content/ampbyexample.amp.html"
+    },
+    {
+      "title": "Hello world",
+      "subtitle": "A simple AMP document.",
+      "url": "/content/hello_world.amp.html"
+    },
+    {
+      "title": "How to publish AMPs",
+      "subtitle": "A tutorial on how to publish AMP documents.",
+      "url": "/content/how_to_publish_amps.amp.html"
+    }
+  ];
+  res.header('Content-Type', 'application/json');
+  res.json(docs);
 });
+
+// Returns the HTML content of a single AMP document.
+app.get('/content/:document', function(req, res) {
+  // TODO(willchou): Add 404 page for bogus :document params.
+  res.sendFile(path.join(__dirname, 'content', req.params.document));
+});
+
+// When testing the production build (via `npm run build`), simply serve
+// the compiled html and js in the `build` dir.
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('build'));
+}
+
+app.listen(port, function() {
+  console.log();
+  if (process.env.NODE_ENV === 'production') {
+    console.log('The production build app is running at:');
+  } else {
+    console.log('The API server is running at:');
+  }
+  console.log('  ' + 'http://localhost:' + port + '/');
+  console.log();
+})

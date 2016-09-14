@@ -1,0 +1,15 @@
+{
+  "name": "AMP in PWA",
+  "short_name": "AMP in PWA",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A simple PWA that displays AMP documents.",
+  "icons": [
+    {
+      "src": "/android-chrome.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}

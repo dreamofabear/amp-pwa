@@ -1,0 +1,39 @@
+{
+  "staticFileGlobs": [
+    "build/static/**/!(*.map)",
+    "build/index.html",
+    "build/manifest.webmanifest"
+  ],
+  "templateFilePath": "service-worker.tmpl",
+  "runtimeCaching": [
+    {
+      "urlPattern": "/shadow-v0.js",
+      "handler": "cacheFirst",
+      "options": {
+        "origin": "https://cdn.ampproject.org",
+        "cache": {
+          "name": "amp-shadow"
+        }
+      }
+    },
+    {
+      "urlPattern": "/documents",
+      "handler": "networkFirst",
+      "options": {
+        "cache": {
+          "name": "amp-documents"
+        }
+      }
+    },
+    {
+      "urlPattern": "/content/*",
+      "handler": "fastest",
+      "options": {
+        "cache": {
+          "name": "amp-content",
+          "maxEntries": 10
+        }
+      }
+    }
+  ]
+}
