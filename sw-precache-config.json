@@ -4,6 +4,7 @@
     "build/index.html",
     "build/manifest.json"
   ],
+  "templateFilePath": "service-worker.tmpl",
   "runtimeCaching": [
     {
       "urlPattern": "/shadow-v0.js",
