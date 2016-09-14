@@ -1,6 +1,6 @@
 {
   "staticFileGlobs": [
-    "build/static/**/*",
+    "build/static/**/!(*.map)",
     "build/index.html",
     "build/manifest.json"
   ],
