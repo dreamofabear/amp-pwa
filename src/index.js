@@ -9,10 +9,10 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/amp-pwa" component={Shell}>
+    <Route path="/" component={Shell}>
 
       <Route path="content/:document" component={
-        props => <AMPDocument src={'/amp-pwa/content/' + props.params.document} />
+        props => <AMPDocument src={'/content/' + props.params.document} />
       } />
     </Route>
   </Router>

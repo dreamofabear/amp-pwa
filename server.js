@@ -12,22 +12,22 @@ var port = pjson.proxy ? parseInt(pjson.proxy.split(':')[2]) : 4000;
 var app = express();
 
 // Returns a list of AMP document metadata to display on the app shell.
-app.get('/amp-pwa/documents', function(req, res) {
+app.get('/documents', function(req, res) {
   var docs = [
     {
       "title": "AMP by example",
       "subtitle": "The home page of AMP by example.",
-      "url": "/amp-pwa/content/ampbyexample.amp.html"
+      "url": "/content/ampbyexample.amp.html"
     },
     {
       "title": "Hello world",
       "subtitle": "A simple AMP document.",
-      "url": "/amp-pwa/content/hello_world.amp.html"
+      "url": "/content/hello_world.amp.html"
     },
     {
       "title": "How to publish AMPs",
       "subtitle": "A tutorial on how to publish AMP documents.",
-      "url": "/amp-pwa/content/how_to_publish_amps.amp.html"
+      "url": "/content/how_to_publish_amps.amp.html"
     }
   ];
   res.header('Content-Type', 'application/json');
@@ -35,7 +35,7 @@ app.get('/amp-pwa/documents', function(req, res) {
 });
 
 // Returns the HTML content of a single AMP document.
-app.get('/amp-pwa/content/:document', function(req, res) {
+app.get('/content/:document', function(req, res) {
   // TODO(willchou): Add 404 page for bogus :document params.
   res.sendFile(path.join(__dirname, 'content', req.params.document));
 });

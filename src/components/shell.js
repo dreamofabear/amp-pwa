@@ -26,7 +26,7 @@ export default class Shell extends React.Component {
 
   componentDidMount() {
     // TODO(willchou): Should this be XHR instead?
-    fetch('/amp-pwa/documents').then(response => {
+    fetch('/documents').then(response => {
       if (response.status !== 200) {
         console.log('AMP document list fetch failed with code: ' + response.status);
         return;
