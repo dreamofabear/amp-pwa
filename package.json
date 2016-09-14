@@ -18,6 +18,7 @@
     "react-dom": "^15.3.1",
     "react-router": "^2.8.0"
   },
+  "homepage": "http://choumx.github.io/amp-pwa",
   "scripts": {
     "start": "nf start -p 3000",
     "build": "react-scripts build && cp manifest.webmanifest build/ && cp src/icons/android-chrome.png build/ && sw-precache --root='build/' --config=sw-precache-config.json --templateFilePath=service-worker.tmpl",
