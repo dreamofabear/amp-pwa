@@ -47,6 +47,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, function() {
+  console.log();
   if (process.env.NODE_ENV === 'production') {
     console.log('The production build app is running at:');
   } else {
