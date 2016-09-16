@@ -7,7 +7,6 @@
   "proxy": "http://localhost:4000",
   "devDependencies": {
     "express": "^4.14.0",
-    "foreman": "^2.0.0",
     "react-scripts": "0.4.1",
     "sw-precache": "^4.0.0"
   },
@@ -19,8 +18,8 @@
     "react-router": "^2.8.0"
   },
   "scripts": {
-    "start": "nf start -p 3000",
-    "build": "react-scripts build && cp manifest.webmanifest build/ && cp src/icons/android-chrome.png build/ && sw-precache --root='build/' --config=sw-precache-config.json --templateFilePath=service-worker.tmpl && NODE_ENV=production node server.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build && cp manifest.webmanifest build/ && cp src/icons/android-chrome.png build/ && sw-precache --root='build/' --config=sw-precache-config.json --templateFilePath=service-worker.tmpl",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
