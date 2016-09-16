@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import React from 'react';
+import './article.css'
 
 export default class Article extends React.Component {
   render() {
