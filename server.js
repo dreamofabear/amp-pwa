@@ -57,7 +57,7 @@ app.get('/documents', function(req, res) {
     {
       "title": "Recipe",
       "subtitle": "This is a sample recipe AMP article demonstrating how to express machine-readable recipe data using JSON+LD.",
-      "url": "/content/recipe.html"
+      "url": "/content/recipe.amp.html"
     }
   ];
   res.header('Content-Type', 'application/json');
