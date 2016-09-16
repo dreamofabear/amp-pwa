@@ -15,19 +15,49 @@ var app = express();
 app.get('/documents', function(req, res) {
   var docs = [
     {
-      "title": "AMP by example",
-      "subtitle": "The home page of AMP by example.",
+      "title": "AMP by Example",
+      "subtitle": "AMP by Example gives a hands-on introduction to Accelerated Mobile Pages based on code and live samples.",
       "url": "/content/ampbyexample.amp.html"
     },
     {
-      "title": "Hello world",
-      "subtitle": "A simple AMP document.",
+      "title": "Hello World",
+      "subtitle": "An AMP HTML tutorial - learn the different building blocks of an AMP HTML file.",
       "url": "/content/hello_world.amp.html"
     },
     {
       "title": "How to publish AMPs",
-      "subtitle": "A tutorial on how to publish AMP documents.",
+      "subtitle": "There are a few things you need to watch out for when publishing Accelerated Mobile Pages (AMP).",
       "url": "/content/how_to_publish_amps.amp.html"
+    },
+    {
+      "title": "Housing",
+      "subtitle": "This sample showcases how to build a housing page in AMP HTML.",
+      "url": "/content/housing.amp.html"
+    },
+    {
+      "title": "Live Blog",
+      "subtitle": "This is a sample template for implementing live blogs in AMP.",
+      "url": "/content/blog.amp.html"
+    },
+    {
+      "title": "News Article",
+      "subtitle": "This is a sample template for a news article in AMP.",
+      "url": "/content/news_article.amp.html"
+    },
+    {
+      "title": "Product Listing",
+      "subtitle": "This sample showcases how to build a product listing page in AMP HTML.",
+      "url": "/content/product_listing.amp.html"
+    },
+    {
+      "title": "Product",
+      "subtitle": "This sample showcases how to build a product page in AMP HTML.",
+      "url": "/content/product.amp.html"
+    },
+    {
+      "title": "Recipe",
+      "subtitle": "This is a sample recipe AMP article demonstrating how to express machine-readable recipe data using JSON+LD.",
+      "url": "/content/recipe.html"
     }
   ];
   res.header('Content-Type', 'application/json');
@@ -36,7 +66,6 @@ app.get('/documents', function(req, res) {
 
 // Returns the HTML content of a single AMP document.
 app.get('/content/:document', function(req, res) {
-  // TODO(willchou): Add 404 page for bogus :document params.
   res.sendFile(path.join(__dirname, 'content', req.params.document));
 });
 
