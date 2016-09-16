@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp manifest.webmanifest build/ && cp src/icons/android-chrome.png build/ && sw-precache --root='build/' --config=sw-precache-config.json --templateFilePath=service-worker.tmpl",
+    "build": "react-scripts build && cp manifest.webmanifest build/ && cp src/icon.png build/ && sw-precache --root='build/' --config=sw-precache-config.json --templateFilePath=service-worker.tmpl",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

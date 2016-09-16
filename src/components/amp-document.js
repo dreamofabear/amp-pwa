@@ -44,7 +44,6 @@ export default class AMPDocument extends React.Component {
    * @param {string} url
    */
   fetchAndAttachAMPDoc_(url) {
-    // TODO: Check if `url` is an AMP url OR if document is just the shell.
     this.fetchDocument_(url).then(doc => {
       return this.ampReadyPromise_.then(amp => {
         amp.attachShadowDoc(this.container_, doc, url);

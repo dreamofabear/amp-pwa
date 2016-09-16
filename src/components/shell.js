@@ -1,21 +1,7 @@
-import { Link } from 'react-router';
-import React from 'react';
+import Article from './article';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import React from 'react';
 import './shell.css';
-
-// TODO(willchou): Move to separate file.
-class Article extends React.Component {
-  render() {
-    return (
-      <div className='card'>
-        <Link to={this.props.src}>
-          <h4>{this.props.title}</h4>
-          <div className='detail'>{this.props.subtitle}</div>
-        </Link>
-      </div>
-    );
-  }
-}
 
 export default class Shell extends React.Component {
   constructor(props) {

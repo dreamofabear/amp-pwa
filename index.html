@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <title>AMP in PWA</title>
+  <link rel="icon" type="image/png" href="./src/favicon.png" />
 
   <!-- Add to home screen for Chrome on Android. -->
   <link rel="manifest" href="/manifest.webmanifest">
@@ -12,10 +13,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="AMP in PWA">
-  <link rel="apple-touch-icon" href="./src/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="./src/icon.png">
 
   <!-- Tile icon for Windows. -->
-  <meta name="msapplication-TileImage" content="/android-chrome.png">
+  <!--
+    Note: Webpack doesn't bundle assets URLs in <meta> tags, so this is manually copied to the
+    build/ folder during `build` in package.json. Unfortunately, this means versioning won't work.
+  -->
+  <meta name="msapplication-TileImage" content="/icon.png">
   <meta name="msapplication-TileColor" content="#fff">
 </head>
 <body>
@@ -32,7 +37,7 @@
   -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+      navigator.serviceWorker.register('/service-worker.js');
     }
   </script>
 </body>
