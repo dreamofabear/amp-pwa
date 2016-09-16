@@ -4,6 +4,22 @@ A simple React-based [progressive web app](https://addyosmani.com/blog/getting-s
 
 To see it in action, go to http://choumx.github.io/amp-pwa.
 
+## Table of Contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [User Guide](#user-guide)
+  - [Quick Start](#quick-start)
+    - [`npm start|test|run build`](#npm-starttestrun-build)
+    - [`node server.js`](#node-serverjs)
+  - [Changes to create-react-app](#changes-to-create-react-app)
+    - [New dependencies](#new-dependencies)
+    - [New files](#new-files)
+  - [Limitations](#limitations)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## User Guide
 
 ### Quick Start
