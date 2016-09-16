@@ -4,11 +4,11 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "A simple PWA that displays AMP documents.",
+  "description": "A simple React-based progressive web app that displays Accelerated Mobile Page (AMP) content.",
   "icons": [
     {
-      "src": "/android-chrome.png",
-      "sizes": "48x48",
+      "src": "/icon.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]
