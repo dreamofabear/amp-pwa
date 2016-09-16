@@ -11,12 +11,12 @@ To see it in action, go to http://choumx.github.io/amp-pwa.
 
 - [User Guide](#user-guide)
   - [Quick Start](#quick-start)
-    - [`npm start|test|run build`](#npm-starttestrun-build)
-    - [`node server.js`](#node-serverjs)
-  - [Changes to create-react-app](#changes-to-create-react-app)
-    - [New dependencies](#new-dependencies)
-    - [New files](#new-files)
-  - [Limitations](#limitations)
+  - [`npm start|test|run build`](#npm-starttestrun-build)
+  - [`node server.js`](#node-serverjs)
+- [Changes to create-react-app](#changes-to-create-react-app)
+  - [New dependencies](#new-dependencies)
+  - [New files](#new-files)
+- [Limitations](#limitations)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -36,7 +36,7 @@ In a **separate terminal**, start the development API server:
 node server.js
 ```
 
-#### `npm start|test|run build`
+### `npm start|test|run build`
 
 This project uses the same development workflow as [create-react-app](https://github.com/facebookincubator/create-react-app#npm-start):
 
@@ -46,20 +46,20 @@ This project uses the same development workflow as [create-react-app](https://gi
 
 Check out create-react-app's [documentation](https://github.com/facebookincubator/create-react-app#npm-start) for more detail.
 
-#### `node server.js`
+### `node server.js`
 
 The web server initiated by `npm start` only serves static content. To serve the AMP content to be displayed by the web app, there's a separate Express server in `server.js`.
 
 For more information on how this works, check out [Using create-react-app with a server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/) and [Proxying API Requests in Development](https://github.com/facebookincubator/create-react-app/blob/master/template/README.md#proxying-api-requests-in-development).
 
-### Changes to create-react-app
+## Changes to create-react-app
 
 This project adds modern web features to `create-react-app`:
 
 * **Accelerated mobile pages (AMP):** Displays fast-loading AMP documents within the app shell via Shadow DOM (or polyfill).
 * **Progressive web:** A service worker enables progressive enhancement of AMP content with precaching, offline functionality and an app shell for supported browsers.
 
-#### New dependencies
+### New dependencies
 
 Compared to `create-react-app`, this project adds a small number of new dependencies:
 
@@ -76,7 +76,7 @@ dependencies:
 - `express` is used to run the development API server, `server.js`.
 - `bootstrap` and `react-bootstrap` can be easily removed for your choice of UI framework.
 
-#### New files
+### New files
 
 ```
 amp-pwa/
@@ -92,7 +92,7 @@ amp-pwa/
 - `service-worker.tmpl` is a customized service worker template for `sw-precache`.
 - `sw-precache-config.json` instructs `sw-precache` which static assets to precache and which resources to cache at runtime.
 
-### Limitations
+## Limitations
 
 - Service workers are [not yet supported by all browsers](http://caniuse.com/#feat=serviceworkers).
 
