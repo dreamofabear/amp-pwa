@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=News+Cycle:400,700");
+@font-face {
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 400;
+  src: local('News Cycle'), local('NewsCycle'), url(./news-cycle.woff) format('woff');
+}
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
