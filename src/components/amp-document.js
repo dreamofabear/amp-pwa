@@ -4,6 +4,9 @@ export default class AMPDocument extends React.Component {
   constructor(props) {
     super(props);
 
+    // 'offline' is set to true if and when the document fetch fails.
+    this.state = {'offline': false};
+
     /** @private */
     this.ampReadyPromise_ = new Promise(resolve => {
       (window.AMP = window.AMP || []).push(resolve);
@@ -33,9 +36,16 @@ export default class AMPDocument extends React.Component {
   }
 
   render() {
-    return (
-      <div className='amp-container' ref={(ref) => this.container_ = ref} />
-    );
+    if (this.state.offline) {
+      return (
+        <div>
+          <h2>Houston, we have a problem.</h2>
+          <p>Looks like we're offline&mdash;please check your Internet connection.</p>
+        </div>
+      );
+    } else {
+      return (<div className='amp-container' ref={(ref) => this.container_ = ref} />);
+    }
   }
 
   /**
@@ -47,6 +57,8 @@ export default class AMPDocument extends React.Component {
       return this.ampReadyPromise_.then(amp => {
         amp.attachShadowDoc(this.container_, doc, url);
       });
+    }).catch(error => {
+      this.setState({'offline': true});
     });
   }
 
