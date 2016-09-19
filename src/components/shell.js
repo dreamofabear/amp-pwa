@@ -1,5 +1,5 @@
-import Article from './article';
-import { Button, Grid, Jumbotron, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Button, Grid, Jumbotron, ListGroup, ListGroupItem, Nav, Navbar, NavItem, PageHeader } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
 import './shell.css';
 
@@ -54,9 +54,15 @@ export default class Shell extends React.Component {
             </p>
           </Jumbotron>
 
-          <div className="stream">
-            {this.state.data.map(doc => <Article title={doc.title} subtitle={doc.subtitle} src={doc.url} key={doc.url} />)}
-          </div>
+          <PageHeader>Articles</PageHeader>
+
+          <ListGroup>
+            {this.state.data.map(doc =>
+              <LinkContainer to={doc.url} key={doc.url}>
+                <ListGroupItem header={doc.title}>{doc.subtitle}</ListGroupItem>
+              </LinkContainer>
+            )}
+          </ListGroup>
 
           <div id="doc-container">
             {this.props.children}
