@@ -40,7 +40,7 @@ export default class AMPDocument extends React.Component {
       return (
         <div>
           <h2>Houston, we have a problem.</h2>
-          <p>Looks like we're offline&mdash;please check your Internet connection.</p>
+          <p>Looks like we are offline&mdash;please check your Internet connection.</p>
         </div>
       );
     } else {
