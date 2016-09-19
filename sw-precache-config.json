@@ -1,5 +1,6 @@
 {
   "navigateFallback": "/",
+  "root": "build/",
   "staticFileGlobs": [
     "build/static/**/!(*.map)",
     "build/index.html",
