@@ -1,12 +1,29 @@
-// TODO(willchou): Document this file!
+// This file contains an Express server that does two things:
+//
+// 1. During development, provide data APIs for the web app to consume
+//
+//     The development webpack-dev-server initiated via `npm start` can only serve
+//     static files from the root project directory. This server provides two APIs
+//     for dynamic data: listing AMP docs and retrieving contents of a single AMP doc.
+//
+//     For development, run `npm start`.
+//     Then, in a **separate terminal shell**, run `node server.js`.
+//
+// 2. Testing the production build
+//
+//     `npm run build` builds the web app for production into the build/ folder.
+//     This server also serves the content of that folder via express.static.
+//
+//     To test the prod build, run `npm run build && node server.js` and the navigate
+//     to http://localhost:4000 on your web browser.
 
 var express = require('express');
 var path = require('path');
 var pjson = require('./package.json');
 
 // This port number must match that of `proxy` in `package.json`, which is used
-// to redirect requests from the development server to the APIs below.
-// @see https://github.com/facebookincubator/create-react-app/blob/master/template/README.md#proxying-api-requests-in-development
+// to redirect requests from the development server to the APIs in this file.
+// See https://github.com/facebookincubator/create-react-app/blob/master/template/README.md#proxying-api-requests-in-development
 var port = pjson.proxy ? parseInt(pjson.proxy.split(':')[2]) : 4000;
 
 var app = express();
@@ -69,19 +86,12 @@ app.get('/content/:document', function(req, res) {
   res.sendFile(path.join(__dirname, 'content', req.params.document));
 });
 
-// When testing the production build (via `npm run build`), simply serve
-// the compiled html and js in the `build` dir.
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('build'));
-}
+// When testing the production build (via `npm run build`), simply serve the compiled html and js in the `build` dir.
+app.use(express.static('build'));
 
 app.listen(port, function() {
   console.log();
-  if (process.env.NODE_ENV === 'production') {
-    console.log('The production build app is running at:');
-  } else {
-    console.log('The API server is running at:');
-  }
+  console.log('The API server is running at:');
   console.log('  ' + 'http://localhost:' + port + '/');
   console.log();
 })
