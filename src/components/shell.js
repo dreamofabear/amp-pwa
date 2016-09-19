@@ -3,6 +3,11 @@ import React from 'react';
 import Home from './home';
 import './shell.css';
 
+/**
+ * The (App) Shell contains the web app's entire UI.
+ *
+ * The navigation bar is always displayed, with either a `Home` or `Article` component beneath it.
+ */
 export default class Shell extends React.Component {
   constructor(props) {
     super(props);

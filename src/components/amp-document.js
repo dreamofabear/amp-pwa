@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** Fetches the AMP document at a given `src` URL and renders it via Shadow DOM. */
 export default class AMPDocument extends React.Component {
   constructor(props) {
     super(props);

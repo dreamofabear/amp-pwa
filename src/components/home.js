@@ -3,6 +3,7 @@ import React from 'react';
 import Article from './article';
 import './home.css';
 
+/** Displays a Jumbotron with the app's description and a list of Articles. */
 export default class Home extends React.Component {
   render() {
     return (
