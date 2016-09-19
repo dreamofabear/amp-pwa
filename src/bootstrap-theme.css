@@ -2,7 +2,7 @@
   font-family: 'News Cycle';
   font-style: normal;
   font-weight: 400;
-  src: local('News Cycle'), local('NewsCycle'), url(./news-cycle.woff) format('woff');
+  src: local('News Cycle'), local('NewsCycle'), url(./font.woff) format('woff');
 }
 /*!
  * bootswatch v3.3.7
