@@ -5,13 +5,12 @@ import { Router, Route, browserHistory } from 'react-router';
 import Shell from './components/shell';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import './journal.bootstrap.css';
+import './journal.bootstrap.css'; // Replace with your own bootstrap theme!
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={Shell}>
-
-      <Route path="content/:document" component={
+    <Route path='/' component={Shell}>
+      <Route path='content/:document' component={
         props => <AMPDocument src={'/content/' + props.params.document} />
       } />
     </Route>

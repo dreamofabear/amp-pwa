@@ -1,8 +1,8 @@
-.card {
-  margin: 24px 0 12px 24px;
+.article {
+  margin: 24px 0;
   border-bottom: 1px solid #eee;
 }
 
-.card a {
+.article a {
   color: #777;
 }

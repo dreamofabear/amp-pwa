@@ -1,5 +1,4 @@
 import React from 'react';
-import './amp-document.css';
 
 export default class AMPDocument extends React.Component {
   constructor(props) {
@@ -35,7 +34,7 @@ export default class AMPDocument extends React.Component {
 
   render() {
     return (
-      <div className="amp-doc-host" ref={(ref) => this.container_ = ref} />
+      <div className='amp-container' ref={(ref) => this.container_ = ref} />
     );
   }
 
