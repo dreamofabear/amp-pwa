@@ -1,6 +1,6 @@
-import { Button, Jumbotron, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Button, Jumbotron, PageHeader } from 'react-bootstrap';
 import React from 'react';
+import Article from './article';
 
 export default class Home extends React.Component {
   render() {
@@ -14,15 +14,9 @@ export default class Home extends React.Component {
           </p>
         </Jumbotron>
 
-        <h2>Articles</h2>
+        <PageHeader>Articles</PageHeader>
 
-        <ListGroup>
-          {this.props.documents.map(doc =>
-            <LinkContainer to={doc.url} key={doc.url}>
-              <ListGroupItem header={doc.title}>{doc.subtitle}</ListGroupItem>
-            </LinkContainer>
-          )}
-        </ListGroup>
+        {this.props.documents.map(doc => <Article title={doc.title} subtitle={doc.subtitle} src={doc.url} key={doc.url} />)}
       </div>
     );
   }
