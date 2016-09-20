@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+// [AMP-PWA]
+// This template is based on the master sw-precache template:
+//     https://github.com/googlechrome/sw-precache/blob/master/service-worker.tmpl
+// Additions to the master template are marked with [AMP-PWA] and [/AMP-PWA].
+// [/AMP-PWA]
+
 // This generated service worker JavaScript will precache your site's resources.
 // The code needs to be saved in a .js file at the top-level of your site, and registered
 // from your pages in order to be used. See
@@ -96,6 +102,7 @@ self.addEventListener('activate', function(event) {
   );
 });
 
+// [AMP-PWA]
 // Change this to match the pathname of URLs for your local AMP content.
 var reForAMPContent = /\/content\/.*/;
 
@@ -110,6 +117,7 @@ self.addEventListener('fetch', function(event) {
     }
   }
 });
+// [/AMP-PWA]
 
 <% if (handleFetch) { %>
 self.addEventListener('fetch', function(event) {
@@ -175,3 +183,23 @@ self.addEventListener('fetch', function(event) {
 <% if (importScripts) { %>
 importScripts(<%= importScripts %>);
 <% } %>
+
+// [AMP-PWA]
+self.addEventListener('activate', function(event) {
+  // Explicitly cache resources that may have been fetched before the SW was installed.
+  toolbox.cache('/documents');
+
+  // Precache select runtime fetches.
+  fetch('/documents').then(response => {
+    response.json().then(documents => {
+      // Fetch the first half of all documents.
+      // This is just a sample heuristic that should be tailored for your app's use case.
+      var numDocumentsToCache = documents.length / 2;
+      for (var i = 0; i < numDocumentsToCache; i++) {
+        var doc = documents[i];
+        toolbox.cache(doc.url);
+      }
+    });
+  });
+});
+// [/AMP-PWA]

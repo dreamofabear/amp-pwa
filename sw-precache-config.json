@@ -12,27 +12,18 @@
       "urlPattern": "/shadow-v0.js",
       "handler": "cacheFirst",
       "options": {
-        "origin": "https://cdn.ampproject.org",
-        "cache": {
-          "name": "amp-shadow"
-        }
+        "origin": "https://cdn.ampproject.org"
       }
     },
     {
       "urlPattern": "/documents",
-      "handler": "networkFirst",
-      "options": {
-        "cache": {
-          "name": "amp-documents"
-        }
-      }
+      "handler": "networkFirst"
     },
     {
       "urlPattern": "/content/*",
       "handler": "fastest",
       "options": {
         "cache": {
-          "name": "amp-content",
           "maxEntries": 10
         }
       }
