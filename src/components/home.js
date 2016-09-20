@@ -3,7 +3,11 @@ import React from 'react';
 import Article from './article';
 import './home.css';
 
-/** Displays a Jumbotron with the app's description and a list of Articles. */
+/**
+ * The app's home page, modulo the navigation bar.
+ *
+ * Displays a jumbotron with the app's description and a list of `Article`s.
+ */
 export default class Home extends React.Component {
   render() {
     return (

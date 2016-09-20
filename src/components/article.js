@@ -3,8 +3,7 @@ import React from 'react';
 import './article.css'
 
 /**
- * Displays the title of an AMP article with a brief description
- * while linking to the article itself.
+ * A snippet of an AMP document that links to the full content.
  */
 export default class Article extends React.Component {
   render() {
