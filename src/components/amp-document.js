@@ -1,6 +1,8 @@
 import React from 'react';
 
-/** Fetches the AMP document at a given `src` URL and renders it via Shadow DOM. */
+/**
+ * Fetches the AMP document at a given `src` URL and renders it via Shadow DOM.
+ */
 export default class AMPDocument extends React.Component {
   constructor(props) {
     super(props);
@@ -8,20 +10,28 @@ export default class AMPDocument extends React.Component {
     // 'offline' is set to true if and when the document fetch fails.
     this.state = {'offline': false};
 
-    /** @private */
+    /**
+     * `window.AMP` is set by the AMP runtime when it finishes loading.
+     * @private
+     */
     this.ampReadyPromise_ = new Promise(resolve => {
       (window.AMP = window.AMP || []).push(resolve);
     });
 
-    /** @private */
+    /**
+     * Child element that the AMP document will be added as a shadow root to.
+     * @private
+     */
     this.container_ = null;
 
-    /** @private */
+    /**
+     * XMLHTTPRequest that fetches the AMP document.
+     * @private
+     */
     this.xhr_ = null;
   }
 
   componentDidMount() {
-    this.installScript_('https://cdn.ampproject.org/shadow-v0.js');
     this.fetchAndAttachAMPDoc_(this.props.src);
   }
 
@@ -45,11 +55,12 @@ export default class AMPDocument extends React.Component {
         </div>
       );
     } else {
-      return (<div className='amp-container' ref={(ref) => this.container_ = ref} />);
+      return (<div className='amp-container' ref={ref => this.container_ = ref} />);
     }
   }
 
   /**
+   * Fetches the AMP document at `url` and attaches it as a shadow root.
    * @private
    * @param {string} url
    */
@@ -64,18 +75,21 @@ export default class AMPDocument extends React.Component {
   }
 
   /**
+   * Fetches and parses HTML at `url`.
    * @private
    * @param {string} url
-   * @return {Promise}
+   * @return {Promise} If fetch succeeds, resolved with {Document}.
+   *         Otherwise, rejects with {string} error description.
    */
   fetchDocument_(url) {
     return new Promise((resolve, reject) => {
       const xhr = (this.xhr_ = new XMLHttpRequest());
       xhr.open('GET', url, true);
       xhr.responseType = 'document';
-      // This is set to text/* instead of text/html because `create-react-app`
+      // This is set to text/* instead of text/html because the development server
       // only forwards requests to the proxy for requests whose 'Accept' header
       // is NOT text/html.
+      // https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#proxying-api-requests-in-development
       xhr.setRequestHeader('Accept', 'text/*');
       xhr.onreadystatechange = () => {
         if (xhr.readyState < /* STATUS_RECEIVED */ 2) {
@@ -90,7 +104,7 @@ export default class AMPDocument extends React.Component {
           if (xhr.responseXML) {
             resolve(xhr.responseXML);
           } else {
-            reject(new Error(`No xhr.responseXML`));
+            reject(new Error('No xhr.responseXML'));
           }
         }
       };
@@ -98,17 +112,6 @@ export default class AMPDocument extends React.Component {
       xhr.onabort = () => { reject(new Error('Request aborted')); };
       xhr.send();
     });
-  }
-
-  /**
-   * @private
-   * @param {string} src
-   */
-  installScript_(src) {
-    const doc = window.document;
-    const script = doc.createElement('script');
-    script.setAttribute('src', src);
-    doc.head.appendChild(script);
   }
 }
 AMPDocument.propTypes = { src: React.PropTypes.string.isRequired }
