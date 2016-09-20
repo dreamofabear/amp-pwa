@@ -32,19 +32,9 @@ var app = express();
 app.get('/documents', function(req, res) {
   var docs = [
     {
-      "title": "AMP by Example",
-      "subtitle": "AMP by Example gives a hands-on introduction to Accelerated Mobile Pages based on code and live samples.",
-      "url": "/content/ampbyexample.amp.html"
-    },
-    {
       "title": "Hello World",
       "subtitle": "An AMP HTML tutorial - learn the different building blocks of an AMP HTML file.",
       "url": "/content/hello_world.amp.html"
-    },
-    {
-      "title": "How to publish AMPs",
-      "subtitle": "There are a few things you need to watch out for when publishing Accelerated Mobile Pages (AMP).",
-      "url": "/content/how_to_publish_amps.amp.html"
     },
     {
       "title": "Housing",
