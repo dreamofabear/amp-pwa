@@ -32,40 +32,26 @@ var app = express();
 app.get('/documents', function(req, res) {
   var docs = [
     {
-      "title": "Hello World",
-      "subtitle": "An AMP HTML tutorial - learn the different building blocks of an AMP HTML file.",
-      "url": "/content/hello_world.amp.html"
+      "title": "Most Beautiful Hikes All Over the World",
+      "image": "/content/unsplash/1.jpg",
+      "author": "Jamie Smith",
+      "date": "Posted today",
+      "url": "/content/most_beautiful_hikes.amp.html",
     },
     {
-      "title": "Housing",
-      "subtitle": "This sample showcases how to build a housing page in AMP HTML.",
-      "url": "/content/housing.amp.html"
+      "title": "Top 10 Most Relaxing Outdoor Adventures",
+      "image": "/content/unsplash/10.jpg",
+      "author": "Paul Bunyan",
+      "date": "Sept 22",
+      "url": "/content/most_beautiful_hikes.amp.html",
     },
     {
-      "title": "Live Blog",
-      "subtitle": "This is a sample template for implementing live blogs in AMP.",
-      "url": "/content/blog.amp.html"
+      "title": "Ranching Roundup: America's Heartland",
+      "image": "/content/unsplash/3.jpg",
+      "author": "Mark Twain",
+      "date": "Sept 20",
+      "url": "/content/most_beautiful_hikes.amp.html",
     },
-    {
-      "title": "News Article",
-      "subtitle": "This is a sample template for a news article in AMP.",
-      "url": "/content/news_article.amp.html"
-    },
-    {
-      "title": "Product Listing",
-      "subtitle": "This sample showcases how to build a product listing page in AMP HTML.",
-      "url": "/content/product_listing.amp.html"
-    },
-    {
-      "title": "Product",
-      "subtitle": "This sample showcases how to build a product page in AMP HTML.",
-      "url": "/content/product.amp.html"
-    },
-    {
-      "title": "Recipe",
-      "subtitle": "This is a sample recipe AMP article demonstrating how to express machine-readable recipe data using JSON+LD.",
-      "url": "/content/recipe.amp.html"
-    }
   ];
   res.header('Content-Type', 'application/json');
   res.json(docs);

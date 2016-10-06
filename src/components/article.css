@@ -1,8 +1,27 @@
 .article {
-  padding: 24px 0;
-  border-bottom: 1px solid #eee;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 30px;
 }
 
-.article {
+.article .outer {
+  background-size: cover;
+  height: 240px;
+}
+
+.article .inner {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.33), rgba(0, 0, 0, 0));
+}
+
+.article h3 {
+  color: white;
+  letter-spacing: 2px;
+  padding: 30px 60px;
+  margin: 0;
+}
+
+.article h4 {
   color: #777;
+  font-size: 16px;
+  padding-left: 60px;
 }

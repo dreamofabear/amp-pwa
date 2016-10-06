@@ -10,8 +10,12 @@ export default class Article extends React.Component {
     return (
       <Link to={this.props.src}>
         <div className='article'>
-            <h3>{this.props.title}</h3>
-            <p>{this.props.subtitle}</p>
+          <div className='outer' style={{backgroundImage: 'url(' + this.props.image + ')'}}>
+            <div className='inner'>
+              <h3>{this.props.title}</h3>
+            </div>
+          </div>
+          <h4>{this.props.subtitle}</h4>
         </div>
       </Link>
     );
@@ -20,5 +24,6 @@ export default class Article extends React.Component {
 Article.propTypes = {
   src: React.PropTypes.string,
   title: React.PropTypes.string,
-  subtitle: React.PropTypes.string
+  subtitle: React.PropTypes.string,
+  image: React.PropTypes.string,
 }

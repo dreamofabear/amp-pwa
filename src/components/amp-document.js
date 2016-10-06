@@ -143,7 +143,7 @@ class AMPDocument extends React.Component {
     const a = e.path[0];
     if (a.tagName === 'A' && a.href) {
       const url = new URL(a.href);
-      if (url.origin == window.location.origin) {
+      if (url.origin === window.location.origin) {
         e.preventDefault();
         this.props.router.push(url.pathname);
         return false;
