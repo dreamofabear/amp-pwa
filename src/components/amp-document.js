@@ -78,12 +78,27 @@ class AMPDocument extends React.Component {
   fetchAndAttachAmpDoc_(url) {
     this.fetchDocument_(url).then(doc => {
       return this.ampReadyPromise_.then(amp => {
+        // Hide navigational and other unwanted elements before displaying.
+        this.hideUnwantedElementsOnDocument_(doc);
+        // Attach the document as a shadow root to the container.
         amp.attachShadowDoc(this.container_, doc, url);
       });
     }).catch(error => {
       this.setState({'offline': true});
     });
   }
+
+  /**
+   * Hides elements (e.g. banners) that would clash with the app shell.
+   * @param {!Document} doc
+   * @private
+   */
+   hideUnwantedElementsOnDocument_(doc) {
+     const banners = doc.getElementsByClassName('banner');
+     for (let banner in banners) {
+       banner.style.display = 'none';
+     }
+   }
 
   /**
    * Fetches and parses HTML at `url`.
