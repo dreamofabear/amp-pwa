@@ -10,9 +10,9 @@ export default class Article extends React.Component {
     return (
       <Link to={this.props.src}>
         <div className='article' style={{backgroundImage: 'url(' + this.props.image + ')'}}>
-          <div className='inner'>
-            <h3>{this.props.title}</h3>
-          </div>
+          <div className='scrim-top'></div>
+          <div className='scrim-bottom'></div>
+          <h3>{this.props.title}</h3>
           <h4>{this.props.subtitle}</h4>
         </div>
       </Link>

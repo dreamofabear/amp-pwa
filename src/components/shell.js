@@ -33,7 +33,7 @@ export default class Shell extends React.Component {
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href='/'>The Accelerated Mobile Post</a>
+              <a href='/'>The Scenic</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
