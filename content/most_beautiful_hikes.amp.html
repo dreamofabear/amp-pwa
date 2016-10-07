@@ -162,7 +162,7 @@
     letter-spacing: .3px;
     color: #4A4A4A;
     vertical-align: top;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 
  }
 
@@ -185,8 +185,6 @@
     color: #8c8c8c;
     letter-spacing: .3px;
     text-align: left;
-    margin-top: 7px;
-    margin-bottom: 15px;
 }
 
 .bottom{
@@ -287,9 +285,9 @@
 .amp-ad-container{
   background:#eee;
   float:right;
-  height:286px;
-  width:316px;
+  width:300px;
   margin:16px;
+  padding-top: 32px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -313,7 +311,7 @@
     background:#eee;
     float:none;
     width:100%;
-    margin:16px 0}
+    margin:16px 0;
   }
 
 
@@ -324,13 +322,20 @@
     color: white;
  }
 
- .section{
+ .section {
     font-family: 'News Cycle', "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
-    font-size: 26px;
-    font-weight: 500;
+    font-size: 30px;
+    font-weight: 700;
     line-height: 55px;
     letter-spacing: .3px;
-    padding-top: 10px;
+ }
+
+ amp-carousel {
+  margin: 24px 0 16px 0;
+ }
+
+ figure.article-image {
+  margin: 24px 0 16px 0;
  }
 
 </style>
@@ -362,7 +367,7 @@
     <p class="text">
       Mutat dolores ea duo. Usu cu dico everti tincidunt, pri vero nullam vidisse no. Eam novum aeque populo cu. Verear contentiones ne quo, no sed consulatu definitionem.
     </p>
-    <figure>
+    <figure class="article-image">
       <amp-img src="unsplash/1.jpg" width=1280 height=768 layout=responsive></amp-img>
       <figcaption class="caption">Here is a responsive image.</figcaption>
     </figure>
@@ -416,7 +421,7 @@
     <p class="text">
       Cum ad graeci legimus, ut duo omnesque petentium, mei saepe explicari principes eu. Ex mei ocurreret expetendis, ex errem blandit has. Phaedrum mediocrem appellantur his ut. Erat viris mediocrem id ius, ad dicta appareat assentior sit. Nec et nullam singulis moderatius, est reque vidisse copiosae eu.
     </p>
-    <p class="section"> After the hike </p>
+    <h2 class="section">After the hike</h2>
     <p class="text">
       Mutat dolores ea duo. Usu cu dico everti tincidunt, pri vero nullam vidisse no. Eam novum aeque populo cu. Verear contentiones ne quo, no sed consulatu definitionem.
     </p>
