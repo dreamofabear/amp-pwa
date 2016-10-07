@@ -1,6 +1,5 @@
 import React from 'react';
 import Article from './article';
-import './home.css';
 
 /**
  * The app's home page, modulo the navigation bar.

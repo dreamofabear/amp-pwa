@@ -1,12 +1,10 @@
 .article {
+  background-size: cover;
   margin-left: -15px;
   margin-right: -15px;
-  margin-bottom: 30px;
-}
-
-.article .outer {
-  background-size: cover;
+  margin-bottom: 5px;
   height: 240px;
+  position: relative;
 }
 
 .article .inner {
@@ -21,7 +19,10 @@
 }
 
 .article h4 {
-  color: #777;
+  color: white;
   font-size: 16px;
-  padding-left: 60px;
+  letter-spacing: 1px;
+  position: absolute;
+  top: 190px;
+  left: 60px;
 }
