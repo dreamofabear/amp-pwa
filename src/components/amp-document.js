@@ -95,8 +95,8 @@ class AMPDocument extends React.Component {
    */
    hideUnwantedElementsOnDocument_(doc) {
      const banners = doc.getElementsByClassName('banner');
-     for (let banner in banners) {
-       banner.style.display = 'none';
+     for (let i = 0; i < banners.length; i++) {
+       banners[i].style.display = 'none';
      }
    }
 
