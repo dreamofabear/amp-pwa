@@ -35,6 +35,14 @@ class AMPDocument extends React.Component {
      */
     this.xhr_ = null;
 
+    /**
+     * Provides AMP functionality on the newly created shadow root after
+     * an AMP document is attached.
+     * @private
+     * @type {Object}
+     */
+    this.shadowAmp_ = null;
+
     /** @private */
     this.boundClickListener_ = this.clickListener_.bind(this);
   }
@@ -46,6 +54,11 @@ class AMPDocument extends React.Component {
   }
 
   componentWillUnmount() {
+    // Cleans up internal shadow AMP document state.
+    if (typeof(this.shadowAmp_.close) === 'function') {
+      this.shadowAmp_.close();
+    }
+
     this.container_.removeEventListener('click', this.boundClickListener_);
 
     if (this.xhr_) {
@@ -82,7 +95,7 @@ class AMPDocument extends React.Component {
         // Hide navigational and other unwanted elements before displaying.
         this.hideUnwantedElementsOnDocument_(doc);
         // Attach the document as a shadow root to the container.
-        amp.attachShadowDoc(this.container_, doc, url);
+        this.shadowAmp_ = amp.attachShadowDoc(this.container_, doc, url);
       });
     }).catch(error => {
       this.setState({'offline': true});
