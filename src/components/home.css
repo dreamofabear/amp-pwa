@@ -13,12 +13,12 @@
   list-style-type: none;
   overflow: hidden;
   margin: 0 auto;
-  padding: 24px;
+  padding: 20px;
 }
 
 .categories li {
   display: inline;
-  padding: 24px;
+  padding: 20px;
 }
 
 .categories span {
