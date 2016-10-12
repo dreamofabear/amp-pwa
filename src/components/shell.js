@@ -1,4 +1,4 @@
-import { Grid, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Grid, Navbar } from 'react-bootstrap';
 import React from 'react';
 import Home from './home';
 import './shell.css';
@@ -37,13 +37,6 @@ export default class Shell extends React.Component {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav>
-              <NavItem eventKey={1} href='http://github.com/choumx/amp-pwa'>View on GitHub</NavItem>
-              <NavItem eventKey={2} href='http://ampproject.org'>AMP Project</NavItem>
-              <NavItem eventKey={3} href='https://facebook.github.io/react/'>React</NavItem>
-            </Nav>
-          </Navbar.Collapse>
         </Navbar>
 
         <Grid className='contents'>
