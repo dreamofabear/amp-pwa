@@ -1,0 +1,31 @@
+.categories {
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.categories a {
+  color: #999;
+}
+
+.categories ul {
+  list-style-type: none;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.categories li {
+  display: inline;
+  padding: 24px;
+}
+
+.categories span {
+  padding-bottom: 2px;
+}
+
+.active {
+  border-bottom: solid 2px #37dc8c;
+  color: black;
+}
