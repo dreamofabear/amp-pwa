@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router'
+import './amp-document.css'
 
 /**
  * Fetches the AMP document at a given `src` URL and renders it via Shadow DOM.
