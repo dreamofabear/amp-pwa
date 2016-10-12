@@ -13,6 +13,8 @@
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
     <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
 
     <!-- Custom fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
@@ -299,5 +301,25 @@
     <p>"To travel is to take a journey into yourself." - Danny Kaye</p>
     <p>The Scenic • No Rights Reserved</p>
   </div>
+  <!-- Sample amp-analytics request with fake GA account -->
+  <amp-analytics type="googleanalytics" id="analytics">
+    <script type="application/json">
+      {
+        "vars": {
+          "account": "XX-YYYYYYYY-Z"
+        },
+        "triggers": {
+          "default pageview": {
+            "on": "visible",
+            "request": "pageview",
+            "vars": {
+              "title": "Bucket List: Scotland"
+            }
+          }
+        }
+      }
+    </script>
+  </amp-analytics>
+  <amp-install-serviceworker src="/amp-pwa/service-worker.js" layout="nodisplay"></amp-install-serviceworker>
 </body>
 </html>
