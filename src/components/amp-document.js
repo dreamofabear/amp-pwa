@@ -169,13 +169,18 @@ class AMPDocument extends React.Component {
     }
     // Check `path` since events that cross the Shadow DOM boundary are retargeted.
     // See http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/#toc-events
-    const a = e.path[0];
-    if (a.tagName === 'A' && a.href) {
-      const url = new URL(a.href);
-      if (url.origin === window.location.origin) {
-        e.preventDefault();
-        this.props.router.push(url.pathname);
-        return false;
+    for (let i = 0; i < e.path.length; i++) {
+      const a = e.path[i];
+      if (a.tagName === 'A' && a.href) {
+        const url = new URL(a.href);
+        if (url.origin === window.location.origin) {
+          // Perform router push instead of page navigation.
+          e.preventDefault();
+          this.props.router.push(url.pathname);
+          // Scroll to top of new document.
+          window.scrollTo(0, 0);
+          return false;
+        }
       }
     }
     return true;
