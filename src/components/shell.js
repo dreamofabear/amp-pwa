@@ -1,5 +1,6 @@
-import { Grid, Navbar } from 'react-bootstrap';
 import React from 'react';
+import { Grid, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router';
 import Home from './home';
 import './shell.css';
 
@@ -33,7 +34,7 @@ export default class Shell extends React.Component {
         <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href='/'>The Scenic</a>
+              <Link to='/'>The Scenic</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
