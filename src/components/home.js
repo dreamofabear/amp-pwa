@@ -32,4 +32,4 @@ export default class Home extends React.Component {
 }
 Home.propTypes = {
   documents: React.PropTypes.arrayOf(React.PropTypes.object),
-}
+};
