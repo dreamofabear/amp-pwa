@@ -1,7 +1,7 @@
+import { Router, Route, browserHistory } from 'react-router';
 import AMPDocument from './components/amp-document/amp-document';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
 import Shell from './components/shell';
 
 import 'bootstrap/dist/css/bootstrap.css';

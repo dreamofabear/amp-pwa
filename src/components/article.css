@@ -3,7 +3,7 @@
   margin-left: -15px;
   margin-right: -15px;
   margin-bottom: 5px;
-  height: 240px;
+  height: 225px;
   position: relative;
 }
 
@@ -17,7 +17,7 @@
   width: 100%;
   height: 60px;
   position: absolute;
-  top: 180px;
+  top: 165px;
 }
 
 .article h3 {
@@ -27,7 +27,7 @@
   color: white;
   letter-spacing: 2px;
   position: absolute;
-  top: 30px;
+  top: 25px;
   left: 12%;
   right: 12%;
   margin: 0;
@@ -40,6 +40,6 @@
   font-size: 8pt;
   letter-spacing: 1px;
   position: absolute;
-  top: 200px;
+  top: 185px;
   left: 12%;
 }

@@ -177,8 +177,6 @@ class AMPDocument extends React.Component {
           // Perform router push instead of page navigation.
           e.preventDefault();
           this.props.router.push(url.pathname);
-          // Scroll to top of new document.
-          window.scrollTo(0, 0);
           return false;
         }
       }

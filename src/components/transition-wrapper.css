@@ -1,0 +1,5 @@
+.in-transition {
+  position: absolute;
+  margin-right: 15px;
+  opacity: 0;
+}
