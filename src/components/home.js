@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Power1, TimelineLite, TweenLite } from 'gsap';
+import { TimelineLite, TweenLite } from 'gsap';
 import Article from './article';
 import React from 'react';
 import './home.css';
@@ -42,8 +42,8 @@ export default class Home extends React.Component {
     if (this.selectedArticle_) {
       // Matches the "enter" animation duration in `TransitionWrapper` to avoid overlapping.
       const enterAnimationDuration = 250;
+      const epsilon = 150;
       const duration = 0.35;
-      const ease = Power1.easeOut;
 
       const navBarHeight = 50;
       const bounds = this.selectedArticle_.getBoundingClientRect();
@@ -58,7 +58,7 @@ export default class Home extends React.Component {
           Array.from(selectedArticleChildren).concat(Array.from(otherArticles));
 
       this.timeline_ = new TimelineLite();
-      this.timeline_.to(this.selectedArticle_, duration, {y: toY, ease: ease, onComplete:() => {
+      this.timeline_.to(this.selectedArticle_, duration, {y: toY, force3D: true, onComplete:() => {
             // Reset window scroll so top of article is displayed.
             const previousScrollY = window.scrollY;
             window.scrollTo(0, 0);
@@ -67,13 +67,13 @@ export default class Home extends React.Component {
             // in the same position.
             TweenLite.set(this.selectedArticle_, {y: toY - previousScrollY});
 
-            // Wait for `TransitionWrapper` animation before letting this component detach from DOM.
-            setTimeout(callback, enterAnimationDuration);
-
             // Transition is now over; notify parent.
             this.props.transitionStateDidChange(false);
+
+            // Wait for `TransitionWrapper` animation before letting this component detach from DOM.
+            setTimeout(callback, enterAnimationDuration + epsilon);
           }})
-          .to(elementsToFadeOut, duration * 0.67, {opacity: 0, ease: ease}, 0);
+          .to(elementsToFadeOut, duration * 0.67, {opacity: 0, force3D: true}, 0);
     } else {
       callback();
     }
