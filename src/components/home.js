@@ -52,10 +52,12 @@ export default class Home extends React.Component {
 
       // Fade out all articles other than the one that was clicked on, as well as the selected
       // article's children (text and scrims).
-      const otherArticles = this.articles_.querySelectorAll('.article:not(.selected)');
-      const selectedArticleChildren = this.selectedArticle_.getElementsByTagName('*');
-      const elementsToFadeOut =
-          Array.from(selectedArticleChildren).concat(Array.from(otherArticles));
+      const otherArticles = Array.from(this.articles_.querySelectorAll('.article:not(.selected)'));
+      const otherArticlesInViewport = otherArticles.filter(this.inViewport_);
+      const otherArticlesToFade = otherArticles.slice(0, 3).concat(otherArticlesInViewport);
+
+      const selectedArticleChildren = Array.from(this.selectedArticle_.getElementsByTagName('*'));
+      const elementsToFadeOut = selectedArticleChildren.concat(otherArticlesToFade);
 
       this.timeline_ = new TimelineLite();
       this.timeline_.to(this.selectedArticle_, duration, {y: toY, force3D: true, onComplete:() => {
@@ -77,6 +79,16 @@ export default class Home extends React.Component {
     } else {
       callback();
     }
+  }
+
+  inViewport_(element) {
+    const bounds = element.getBoundingClientRect();
+    const width = (window.innerWidth || document.documentElement.clientWidth);
+    const height = (window.innerHeight || document.documentElement.clientHeight);
+
+    const intersectsX = (bounds.left >= 0 && bounds.left <= width) || (bounds.right >= 0 && bounds.right <= width);
+    const intersectsY = (bounds.top >= 0 && bounds.top <= height) || (bounds.bottom >= 0 && bounds.bottom <= height);
+    return intersectsX && intersectsY;
   }
 
   /** @private */
