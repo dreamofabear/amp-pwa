@@ -24,7 +24,10 @@ export default class TransitionWrapper extends React.Component {
       this.container_.classList.add('in-transition');
       setTimeout(() => {
         // Once the "leave" animation of `Home` completes, fade in the wrapper contents.
-        TweenLite.fromTo(this.container_, duration, {opacity: 0}, {opacity: 1, onComplete: () => {
+        TweenLite.fromTo(this.container_,
+            duration,
+            {opacity: 0},
+            {opacity: 1, force3D: true, onComplete: () => {
           this.container_.classList.remove('in-transition');
           callback();
         }});

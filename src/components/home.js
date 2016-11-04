@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Power1, TimelineLite, TweenLite } from 'gsap';
+import { TimelineLite, TweenLite } from 'gsap';
 import Article from './article';
 import React from 'react';
 import './home.css';
@@ -42,7 +42,7 @@ export default class Home extends React.Component {
     if (this.selectedArticle_) {
       // Matches the "enter" animation duration in `TransitionWrapper` to avoid overlapping.
       const enterAnimationDuration = 250;
-      const epsilon = 50;
+      const epsilon = 150;
       const duration = 0.35;
 
       const navBarHeight = 50;
@@ -58,7 +58,7 @@ export default class Home extends React.Component {
           Array.from(selectedArticleChildren).concat(Array.from(otherArticles));
 
       this.timeline_ = new TimelineLite();
-      this.timeline_.to(this.selectedArticle_, duration, {y: toY, ease: Power1.easeOut, onComplete:() => {
+      this.timeline_.to(this.selectedArticle_, duration, {y: toY, force3D: true, onComplete:() => {
             // Reset window scroll so top of article is displayed.
             const previousScrollY = window.scrollY;
             window.scrollTo(0, 0);
@@ -73,7 +73,7 @@ export default class Home extends React.Component {
             // Wait for `TransitionWrapper` animation before letting this component detach from DOM.
             setTimeout(callback, enterAnimationDuration + epsilon);
           }})
-          .to(elementsToFadeOut, duration * 0.67, {opacity: 0}, 0);
+          .to(elementsToFadeOut, duration * 0.67, {opacity: 0, force3D: true}, 0);
     } else {
       callback();
     }
