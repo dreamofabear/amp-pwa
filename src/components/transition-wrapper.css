@@ -9,3 +9,15 @@
     width: 720px;
   }
 }
+
+@media (min-width: 992px) {
+  .in-transition {
+    width: 940px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .in-transition {
+    width: 1140px;
+  }
+}
