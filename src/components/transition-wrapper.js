@@ -27,7 +27,7 @@ export default class TransitionWrapper extends React.Component {
         TweenLite.fromTo(this.container_,
             duration,
             {opacity: 0},
-            {opacity: 1, force3D: true, onComplete: () => {
+            {opacity: 1, onComplete: () => {
           this.container_.classList.remove('in-transition');
           callback();
         }});

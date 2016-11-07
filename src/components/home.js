@@ -59,8 +59,12 @@ export default class Home extends React.Component {
       const selectedArticleChildren = Array.from(this.selectedArticle_.getElementsByTagName('*'));
       const elementsToFadeOut = selectedArticleChildren.concat(otherArticlesToFade);
 
+      // Article height !== height of hero image in responsive layout, so animate to the latter.
+      const oneOverAspectRatio = 0.6;
+      const responsiveHeight = (window.innerWidth || document.documentElement.clientWidth) * oneOverAspectRatio);
+
       this.timeline_ = new TimelineLite();
-      this.timeline_.to(this.selectedArticle_, duration, {y: toY, force3D: true, onComplete:() => {
+      this.timeline_.to(this.selectedArticle_, duration, {y: toY, height: responsiveHeight, onComplete:() => {
             // Reset window scroll so top of article is displayed.
             const previousScrollY = window.scrollY;
             window.scrollTo(0, 0);
@@ -75,12 +79,13 @@ export default class Home extends React.Component {
             // Wait for `TransitionWrapper` animation before letting this component detach from DOM.
             setTimeout(callback, enterAnimationDuration + epsilon);
           }})
-          .to(elementsToFadeOut, duration * 0.67, {opacity: 0, force3D: true}, 0);
+          .to(elementsToFadeOut, duration * 0.67, {opacity: 0}, 0);
     } else {
       callback();
     }
   }
 
+  /** @private */
   inViewport_(element) {
     const bounds = element.getBoundingClientRect();
     const width = (window.innerWidth || document.documentElement.clientWidth);
