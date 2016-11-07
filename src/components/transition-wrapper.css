@@ -3,3 +3,9 @@
   margin-right: 15px;
   opacity: 0;
 }
+
+@media (min-width: 768px) {
+  .in-transition {
+    width: 720px;
+  }
+}
