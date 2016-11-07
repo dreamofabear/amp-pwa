@@ -61,7 +61,9 @@ export default class Home extends React.Component {
 
       // Article height !== height of hero image in responsive layout, so animate to the latter.
       const oneOverAspectRatio = 0.6;
-      const responsiveHeight = (window.innerWidth || document.documentElement.clientWidth) * oneOverAspectRatio;
+      const maxWidth = 750;
+      const responsiveHeight = Math.min(maxWidth * oneOverAspectRatio,
+          (window.innerWidth || document.documentElement.clientWidth) * oneOverAspectRatio);
 
       this.timeline_ = new TimelineLite();
       this.timeline_.to(this.selectedArticle_, duration, {y: toY, height: responsiveHeight, onComplete:() => {
