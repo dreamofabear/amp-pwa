@@ -4,7 +4,7 @@
   margin-left: -15px;
   margin-right: -15px;
   margin-bottom: 5px;
-  height: 225px;
+  height: 200px;
   position: relative;
 }
 
@@ -18,7 +18,7 @@
   width: 100%;
   height: 60px;
   position: absolute;
-  top: 165px;
+  top: 140px;
 }
 
 .article h3 {
@@ -41,6 +41,6 @@
   font-size: 8pt;
   letter-spacing: 1px;
   position: absolute;
-  top: 185px;
+  top: 160px;
   left: 12%;
 }
