@@ -4,6 +4,7 @@
   opacity: 0;
 }
 
+/** Container widths correspond to Bootstrap theme. */
 @media (min-width: 768px) {
   .in-transition {
     width: 720px;

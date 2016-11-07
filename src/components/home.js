@@ -54,15 +54,16 @@ export default class Home extends React.Component {
       // article's children (text and scrims).
       const otherArticles = Array.from(this.articles_.querySelectorAll('.article:not(.selected)'));
       const otherArticlesInViewport = otherArticles.filter(this.inViewport_);
-      const otherArticlesToFade = otherArticles.slice(0, 3).concat(otherArticlesInViewport);
+      // TODO: This should be the articles in viewport at scrollY == 0.
+      const otherArticlesToFade = otherArticles.slice(0, 4).concat(otherArticlesInViewport);
 
       const selectedArticleChildren = Array.from(this.selectedArticle_.getElementsByTagName('*'));
       const elementsToFadeOut = selectedArticleChildren.concat(otherArticlesToFade);
 
       // Article height !== height of hero image in responsive layout, so animate to the latter.
       const oneOverAspectRatio = 0.6;
-      const maxWidth = 750;
-      const responsiveHeight = Math.min(maxWidth * oneOverAspectRatio,
+      const maxContainerWidth = this.maxContainerWidth_();
+      const responsiveHeight = Math.min(maxContainerWidth * oneOverAspectRatio,
           (window.innerWidth || document.documentElement.clientWidth) * oneOverAspectRatio);
 
       this.timeline_ = new TimelineLite();
@@ -84,6 +85,19 @@ export default class Home extends React.Component {
           .to(elementsToFadeOut, duration * 0.67, {opacity: 0}, 0);
     } else {
       callback();
+    }
+  }
+
+  /** @private */
+  maxContainerWidth_() {
+    const screenWidth = (window.innerWidth || document.documentElement.clientWidth);
+    // Corresponds to container widths in Bootstrap theme.
+    if (screenWidth >= 1200) {
+      return 1170;
+    } else if (screenWidth >= 992) {
+      return 970;
+    } else {
+      return 750;
     }
   }
 
