@@ -314,6 +314,7 @@ app.get('/content/:document', function(req, res) {
 
 // When testing the production build (via `npm run build`), simply serve the compiled html and js in the `build` dir.
 app.use(express.static('build'));
+app.use('/content', express.static('content'));
 
 app.listen(port, function() {
   console.log();
