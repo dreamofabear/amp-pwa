@@ -167,20 +167,38 @@ class AMPDocument extends React.Component {
     if (e.defaultPrevented) {
       return false;
     }
-    // Check `path` since events that cross the Shadow DOM boundary are retargeted.
-    // See http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/#toc-events
-    for (let i = 0; i < e.path.length; i++) {
-      const a = e.path[i];
-      if (a.tagName === 'A' && a.href) {
-        const url = new URL(a.href);
-        if (url.origin === window.location.origin) {
-          // Perform router push instead of page navigation.
-          e.preventDefault();
-          this.props.router.push(url.pathname);
-          return false;
+
+    let a = null;
+
+    if (e.path) {
+      // Check `path` since events that cross the Shadow DOM boundary are retargeted.
+      // See http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/#toc-events
+      for (let i = 0; i < e.path.length; i++) {
+        const node = e.path[i];
+        if (node.tagName === 'A') {
+          a = node;
+          break;
         }
       }
+    } else {
+      // Polyfill for `path`.
+      let node = e.target;
+      while (node && node.tagName !== 'A') {
+        node = node.parentNode;
+      }
+      a = node;
     }
+
+    if (a && a.href) {
+      const url = new URL(a.href);
+      if (url.origin === window.location.origin) {
+        // Perform router push instead of page navigation.
+        e.preventDefault();
+        this.props.router.push(url.pathname);
+        return false;
+      }
+    }
+
     return true;
   }
 }
