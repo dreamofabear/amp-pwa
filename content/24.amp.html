@@ -305,21 +305,23 @@
   <amp-analytics type="googleanalytics" id="analytics">
     <script type="application/json">
       {
-        "vars": {
-          "account": "XX-YYYYYYYY-Z"
+        "requests": {
+          "event": "https://amp-publisher-samples-staging.herokuapp.com/amp-analytics/ping?user=amp-sQyi1yvcz6MRgSz3JQiI1iw7xlSJaxvgV_hbAJxRaSaCsa6hy2sQlOzz-UsIa-oA&account=ampbyexample&event=${eventId}"
         },
         "triggers": {
-          "default pageview": {
+          "trackPageview": {
             "on": "visible",
-            "request": "pageview",
+            "request": "event",
             "vars": {
-              "title": "11 Top Spots for Incredible Photography"
+              "eventId": "pageview"
             }
           }
         }
       }
     </script>
   </amp-analytics>
-  <amp-install-serviceworker src="/amp-pwa/service-worker.js" layout="nodisplay"></amp-install-serviceworker>
+  <amp-install-serviceworker src="/service-worker.js" layout="nodisplay"
+        data-no-service-worker-fallback-url-match=".*content\/[0-9]*\.amp\.html"
+        data-no-service-worker-fallback-shell-url="/"></amp-install-serviceworker>
 </body>
 </html>
