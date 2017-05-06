@@ -28,6 +28,7 @@ To see it in action, go to http://choumx.github.io/amp-pwa.
 git clone git@github.com:choumx/amp-pwa.git
 cd amp-pwa
 npm install
+npm run build
 npm start
 ```
 
