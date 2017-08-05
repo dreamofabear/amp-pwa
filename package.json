@@ -17,7 +17,7 @@
     "react-dom": "^15.6.1",
     "react-router": "^2.8.0",
     "react-addons-transition-group": "^15.3.2",
-    "react-bootstrap": "^0.30.3",
+    "react-bootstrap": "^0.30.3"
   },
   "scripts": {
     "start": "react-scripts start",
