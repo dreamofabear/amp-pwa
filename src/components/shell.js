@@ -47,6 +47,7 @@ class Shell extends React.Component {
   }
 
   render() {
+    console.log(this.props.childRoutes);
     return (
       <div>
         <Navbar fixedTop>
