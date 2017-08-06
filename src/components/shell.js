@@ -1,5 +1,5 @@
 import { Grid, Navbar } from 'react-bootstrap';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, matchPath } from 'react-router-dom';
 import Home from './home';
 import React from 'react';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
@@ -47,7 +47,6 @@ class Shell extends React.Component {
   }
 
   render() {
-    console.log(this.props.childRoutes);
     return (
       <div>
         <Navbar fixedTop>
@@ -62,10 +61,10 @@ class Shell extends React.Component {
         <Grid className='contents'>
           <TransitionGroup>
             {
-              (this.props.childRoutes) ?
+              (matchPath(window.location.pathname, this.props.children.props.path)) ?
                   <TransitionWrapper
                       key='transition-wrapper'
-                      contents={this.props.childRoutes}
+                      contents={this.props.children}
                       isTransitioning={this.state.isTransitioning} /> :
                   <Home key='home'
                       documents={this.state.documents}

@@ -9,10 +9,10 @@ import './bootstrap-theme.css'; // Replace with your own bootstrap theme!
 // FIX: https://github.com/ReactTraining/react-router/issues/4942
 ReactDOM.render((
   <Router>
-    <Route path="/" component={Shell} childRoutes={() =>
+    <Shell children={
       <Route path='/content/:document' component={
-        props => <AMPDocument src={'/content/' + props.match.params.document} />
-      } />
+      props => <AMPDocument src={'/content/' + props.match.params.document} />
+      }/>
     }/>
   </Router>
 ), document.getElementById('root'));
