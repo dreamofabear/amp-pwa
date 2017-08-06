@@ -16,9 +16,9 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-addons-transition-group": "^15.6.0",
-    "react-bootstrap": "^0.30.10",
+    "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
-    "react-router": "^2.8.1"
+    "react-router-dom": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

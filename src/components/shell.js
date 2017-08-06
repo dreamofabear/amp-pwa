@@ -1,5 +1,5 @@
 import { Grid, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Home from './home';
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';

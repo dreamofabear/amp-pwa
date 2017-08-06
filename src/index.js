@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Shell from './components/shell';
-import { Router, Route, browserHistory } from 'react-router';
+import { BrowserRouter, Route } from 'react-router-dom';
 import AMPDocument from './components/amp-document/amp-document';
 import 'bootstrap/dist/css/bootstrap.css';
 import './bootstrap-theme.css'; // Replace with your own bootstrap theme!
@@ -18,11 +18,12 @@ export function redirectSWFallbackURL(nextState, replace) {
 }
 
 ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path='/' component={Shell} onEnter={redirectSWFallbackURL}>
+  <BrowserRouter>
+    <div>
       <Route path='content/:document' component={
         props => <AMPDocument src={'/content/' + props.params.document} />
       } />
-    </Route>
-  </Router>
+      <Route path='/' component={Shell} onEnter={redirectSWFallbackURL} />
+    </div>
+  </BrowserRouter>
 ), document.getElementById('root'));
