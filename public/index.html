@@ -2,14 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+    <!-- Add to home screen for Safari on iOS. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="AMP in PWA">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <!-- Tile icon for Windows. -->
+    <!--
+      Note: Webpack doesn't bundle assets URLs in <meta> tags, so this is manually copied to the
+      build/ folder during `build` in package.json. "/icon.png" is also used by manifest.webmanifest.
+    -->
+    <meta name="msapplication-TileImage" content="icon.png">
+    <meta name="msapplication-TileColor" content="#fff">
+
+    <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/favicon.png">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -19,7 +35,15 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+
+    <!-- Asynchronously load the AMP-with-Shadow-DOM runtime library. -->
+    <script async src="https://cdn.ampproject.org/shadow-v0.js"></script>
+
+    <!-- Custom fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <title>AMP in PWA</title>
   </head>
   <body>
     <noscript>
@@ -36,5 +60,10 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js');
+      }
+    </script>
   </body>
 </html>
