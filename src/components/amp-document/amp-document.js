@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 import './amp-document.css'
 
@@ -229,5 +230,5 @@ class AMPDocument extends React.Component {
     return true;
   }
 }
-AMPDocument.propTypes = { src: React.PropTypes.string.isRequired }
+AMPDocument.propTypes = { src: PropTypes.string.isRequired }
 export default withRouter(AMPDocument);

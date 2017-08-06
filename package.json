@@ -13,11 +13,12 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "gsap": "^1.19.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-addons-transition-group": "^15.6.0",
+    "react-bootstrap": "^0.30.10",
     "react-dom": "^15.6.1",
-    "react-router": "^2.8.0",
-    "react-addons-transition-group": "^15.3.2",
-    "react-bootstrap": "^0.30.3"
+    "react-router": "^2.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

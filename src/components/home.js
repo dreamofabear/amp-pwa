@@ -1,7 +1,8 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { TimelineLite, TweenLite } from 'gsap';
 import Article from './article';
-import React from 'react';
 import './home.css';
 
 /**
@@ -129,8 +130,13 @@ export default class Home extends React.Component {
       <div>
         <div className='categories' ref={ref => this.categories_ = ref}>
           <ul>
-            <a href="#"><li><span className='active'>Recent</span></li></a>
-            <a href="#"><li><span>Trending</span></li></a>
+            {
+              // Fix for the deprecated: jsx-a11y/href-no-hash
+              // eslint-disable-next-line
+            }<a href="#"><li><span className='active'>Recent</span></li></a>
+            {
+              // eslint-disable-next-line
+            }<a href="#"><li><span>Trending</span></li></a>
           </ul>
         </div>
         <div className='articles' ref={ref => this.articles_ = ref}>
@@ -149,6 +155,6 @@ export default class Home extends React.Component {
   }
 }
 Home.propTypes = {
-  documents: React.PropTypes.arrayOf(React.PropTypes.object),
-  transitionStateDidChange: React.PropTypes.func
+  documents: PropTypes.arrayOf(PropTypes.object),
+  transitionStateDidChange: PropTypes.func
 };
