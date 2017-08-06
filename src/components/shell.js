@@ -43,6 +43,8 @@ class Shell extends React.Component {
       response.json().then(data => {
         this.setState({'documents': data});
       });
+    }).catch(error => {
+      console.log('Could not fetch documents')
     });
   }
 
@@ -61,7 +63,8 @@ class Shell extends React.Component {
         <Grid className='contents'>
           <TransitionGroup>
             {
-              (matchPath(window.location.pathname, this.props.children.props.path)) ?
+              (this.props.children &&
+                matchPath(window.location.pathname, this.props.children.props.path)) ?
                   <TransitionWrapper
                       key='transition-wrapper'
                       contents={this.props.children}

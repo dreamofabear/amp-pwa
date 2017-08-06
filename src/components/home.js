@@ -140,15 +140,19 @@ export default class Home extends React.Component {
           </ul>
         </div>
         <div className='articles' ref={ref => this.articles_ = ref}>
-          {this.props.documents.map(doc =>
-            <Link to={doc.url} key={doc.url} onClick={this.onClickArticleLink_.bind(this)}>
-              <Article
-                  title={doc.title}
-                  subtitle={'By ' + doc.author + ', ' + doc.date}
-                  image={doc.image}
-                  src={doc.url} />
-            </Link>
-          )}
+          {
+            (this.props.documents) ?
+            this.props.documents.map(doc =>
+              <Link to={doc.url} key={doc.url} onClick={this.onClickArticleLink_.bind(this)}>
+                <Article
+                    title={doc.title}
+                    subtitle={'By ' + doc.author + ', ' + doc.date}
+                    image={doc.image}
+                    src={doc.url} />
+              </Link>
+            ) :
+            <h1>No articles found</h1>
+          }
         </div>
       </div>
     );
