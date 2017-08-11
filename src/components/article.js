@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './article.css'
 
 /**
@@ -17,7 +18,7 @@ export default class Article extends React.Component {
   }
 }
 Article.propTypes = {
-  title: React.PropTypes.string,
-  subtitle: React.PropTypes.string,
-  image: React.PropTypes.string,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  image: PropTypes.string,
 }

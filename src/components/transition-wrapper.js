@@ -1,5 +1,6 @@
-import { TweenLite } from 'gsap';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { TweenLite } from 'gsap';
 import './transition-wrapper.css';
 
 /**
@@ -8,7 +9,7 @@ import './transition-wrapper.css';
 export default class TransitionWrapper extends React.Component {
   constructor(props) {
     super(props);
-    
+
     /** @private @type {!Element} */
     this.container_ = null;
   }
@@ -42,6 +43,6 @@ export default class TransitionWrapper extends React.Component {
   }
 }
 TransitionWrapper.propTypes = {
-  contents: React.PropTypes.node,
-  isTransitioning: React.PropTypes.bool
+  contents: PropTypes.node,
+  isTransitioning: PropTypes.bool
 };

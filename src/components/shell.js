@@ -1,21 +1,36 @@
 import { Grid, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link, withRouter, matchPath } from 'react-router-dom';
 import Home from './home';
 import React from 'react';
-import ReactTransitionGroup from 'react-addons-transition-group';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import TransitionWrapper from './transition-wrapper';
 import './shell.css';
+
+/**
+ * @see https://github.com/ampproject/amphtml/blob/master/extensions/amp-install-serviceworker/amp-install-serviceworker.md#shell-url-rewrite
+ */
+function redirectSWFallbackURL(nextState, replace) {
+  var hash = window.location.hash;
+  if (hash && hash.indexOf('#href=') === 0) {
+    var href = decodeURIComponent(hash.substr(6));
+    replace({pathname: href});
+  }
+}
 
 /**
  * The (App) Shell contains the web app's entire UI.
  *
  * The navigation bar is always displayed, with either a `Home` or `Article` component beneath it.
  */
-export default class Shell extends React.Component {
+class Shell extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {'documents': [], isTransitioning: false};
+  }
+
+  componentWillMount(nextProps, nextState) {
+    redirectSWFallbackURL(nextState, this.props.history.replace);
   }
 
   componentDidMount() {
@@ -27,6 +42,8 @@ export default class Shell extends React.Component {
       response.json().then(data => {
         this.setState({'documents': data});
       });
+    }).catch(error => {
+      console.log('Could not fetch documents')
     });
   }
 
@@ -43,9 +60,10 @@ export default class Shell extends React.Component {
         </Navbar>
 
         <Grid className='contents'>
-          <ReactTransitionGroup>
+          <TransitionGroup>
             {
-              (this.props.children) ?
+              (this.props.children &&
+                matchPath(window.location.pathname, this.props.children.props.path)) ?
                   <TransitionWrapper
                       key='transition-wrapper'
                       contents={this.props.children}
@@ -54,7 +72,7 @@ export default class Shell extends React.Component {
                       documents={this.state.documents}
                       transitionStateDidChange={this.onTransitionStateChange_.bind(this)} />
             }
-          </ReactTransitionGroup>
+          </TransitionGroup>
         </Grid>
       </div>
     );
@@ -65,3 +83,5 @@ export default class Shell extends React.Component {
     this.setState({isTransitioning: isTransitioning});
   }
 }
+
+export default withRouter(Shell);

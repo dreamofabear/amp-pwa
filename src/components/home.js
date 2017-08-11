@@ -1,7 +1,8 @@
-import { Link } from 'react-router';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { TimelineLite, TweenLite } from 'gsap';
 import Article from './article';
-import React from 'react';
 import './home.css';
 
 /**
@@ -129,26 +130,35 @@ export default class Home extends React.Component {
       <div>
         <div className='categories' ref={ref => this.categories_ = ref}>
           <ul>
-            <a href="#"><li><span className='active'>Recent</span></li></a>
-            <a href="#"><li><span>Trending</span></li></a>
+            {
+              // Fix for the deprecated: jsx-a11y/href-no-hash
+              // eslint-disable-next-line
+            }<a href="#"><li><span className='active'>Recent</span></li></a>
+            {
+              // eslint-disable-next-line
+            }<a href="#"><li><span>Trending</span></li></a>
           </ul>
         </div>
         <div className='articles' ref={ref => this.articles_ = ref}>
-          {this.props.documents.map(doc =>
-            <Link to={doc.url} key={doc.url} onClick={this.onClickArticleLink_.bind(this)}>
-              <Article
-                  title={doc.title}
-                  subtitle={'By ' + doc.author + ', ' + doc.date}
-                  image={doc.image}
-                  src={doc.url} />
-            </Link>
-          )}
+          {
+            (this.props.documents) ?
+            this.props.documents.map(doc =>
+              <Link to={doc.url} key={doc.url} onClick={this.onClickArticleLink_.bind(this)}>
+                <Article
+                    title={doc.title}
+                    subtitle={'By ' + doc.author + ', ' + doc.date}
+                    image={doc.image}
+                    src={doc.url} />
+              </Link>
+            ) :
+            <h1>No articles found</h1>
+          }
         </div>
       </div>
     );
   }
 }
 Home.propTypes = {
-  documents: React.PropTypes.arrayOf(React.PropTypes.object),
-  transitionStateDidChange: React.PropTypes.func
+  documents: PropTypes.arrayOf(PropTypes.object),
+  transitionStateDidChange: PropTypes.func
 };
