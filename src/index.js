@@ -6,7 +6,6 @@ import AMPDocument from './components/amp-document/amp-document';
 import 'bootstrap/dist/css/bootstrap.css';
 import './bootstrap-theme.css'; // Replace with your own bootstrap theme!
 
-// FIX: https://github.com/ReactTraining/react-router/issues/4942
 ReactDOM.render((
   <Router>
     <Shell children={

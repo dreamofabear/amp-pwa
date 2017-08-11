@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp -R content build/ && sw-precache --config=sw-precache-config.json --navigateFallback='/' --templateFilePath=service-worker.tmpl",
+    "build": "react-scripts build && sw-precache --config=sw-precache-config.json --navigateFallback='/' --templateFilePath=service-worker.tmpl",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

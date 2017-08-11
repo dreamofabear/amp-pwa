@@ -29,7 +29,6 @@ class Shell extends React.Component {
     this.state = {'documents': [], isTransitioning: false};
   }
 
-  // Replacement for react-router onEnter
   componentWillMount(nextProps, nextState) {
     redirectSWFallbackURL(nextState, this.props.history.replace);
   }
@@ -85,4 +84,4 @@ class Shell extends React.Component {
   }
 }
 
-export default withRouter(Shell)
+export default withRouter(Shell);
