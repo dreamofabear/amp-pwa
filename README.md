@@ -25,7 +25,7 @@ To see it in action, go to http://choumx.github.io/amp-pwa.
 ### Quick Start
 
 ```sh
-git clone git@github.com:choumx/amp-pwa.git
+git clone https://github.com/choumx/amp-pwa.git
 cd amp-pwa
 npm install
 npm start
